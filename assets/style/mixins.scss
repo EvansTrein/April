@@ -1,0 +1,24 @@
+@use './vars.scss';
+
+@mixin min-max() {
+  width: 100%;
+  // margin: 0 auto;
+  box-sizing: border-box;
+	margin-inline: auto;
+
+	@media (width >= vars.$smTableWidth) {
+    max-width: vars.$smTableWidth;
+  }
+  @media (width >= vars.$tableWidth) {
+    max-width: vars.$tableWidth;
+  }
+  @media (width >= vars.$smDesktopWidth) {
+    max-width: vars.$smDesktopWidth;
+  }
+  @media (width >= vars.$desktopWidth) {
+    max-width: vars.$desktopWidth;
+  }
+  @media (width >= vars.$lgDesktopWidth) {
+    max-width: vars.$lgDesktopWidth;
+  }
+}

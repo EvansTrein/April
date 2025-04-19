@@ -1,0 +1,48 @@
+@use './_reset.scss';
+@use './vars.scss';
+@use './mixins.scss';
+@use './backdrop.scss';
+@use './common/common.scss';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./../fonts/Montserrat-Medium.eot');
+  src: url('./../fonts/Montserrat-Medium.woff2') format('woff2'),
+    url('./../fonts/Montserrat-Medium.woff') format('woff'), url('./../fonts/Montserrat-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-display: auto;
+}
+
+body, button, input, textarea, select {
+  font-family: vars.$mainFont;
+  font-size: vars.$mainFontSize;
+  color: vars.$mainFontColor;
+  line-height: vars.$mainLineHeight;
+}
+
+.wrap {
+	position: relative;
+	z-index: 10;
+}
+
+.container {
+	@include mixins.min-max();
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+	
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.5);
+		border-radius: 10px;
+	}
+}

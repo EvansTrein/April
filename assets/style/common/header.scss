@@ -1,0 +1,66 @@
+@use './../vars.scss';
+@use './../mixins.scss';
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 3px double #c7c6c6;
+	gap: 15px;
+	
+  &__logo {
+		font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    word-spacing: 7px;
+    width: fit-content;
+    background: linear-gradient(90deg, #ff0000, #ffffff 40%, #6a0dad, #ff0000);
+    background-color: cover;
+    background-clip: text;
+    background-size: 200%;
+    color: transparent;
+    animation: animTitle 10s linear infinite;
+  }
+	
+  &__filters {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+    gap: 15px;
+		
+    &-param {
+			color: black;
+      border-radius: 3px;
+      border-bottom: 3px solid white;
+      text-align: center;
+      background-color: vars.$grayTransparent;
+      appearance: textfield;
+			transition-duration: 400ms;
+      flex-shrink: 1;
+			max-width: 200px;
+
+			&:hover {
+				border-bottom: 3px solid rgb(18, 212, 202);
+			}
+
+			&:focus {
+				border-bottom: 3px solid rgb(18, 212, 202);
+			}
+
+			&_isError {
+				background-color: #a51414;
+				font-weight: bold;
+				transition: background-color 0.5s ease, border 0.5s ease;
+			}
+    }
+
+
+  }
+}
+
+@keyframes animTitle {
+  to {
+    background-position: 200% 0;
+  }
+}
