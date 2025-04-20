@@ -2,15 +2,14 @@
 @use './../mixins.scss';
 
 .header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  @include mixins.flex-center;
+  @include mixins.responsive-gap;
+  text-align: center;
   flex-wrap: wrap;
   border-bottom: 3px double #c7c6c6;
-	gap: 15px;
-	
+
   &__logo {
-		font-size: 2rem;
+    font-size: 2rem;
     font-weight: bold;
     letter-spacing: 5px;
     word-spacing: 7px;
@@ -22,40 +21,52 @@
     color: transparent;
     animation: animTitle 10s linear infinite;
   }
-	
+
+  &__content {
+    @include mixins.flex-center;
+    @include mixins.responsive-gap;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
   &__filters {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-    gap: 15px;
-		
+    @include mixins.flex-center;
+    @include mixins.responsive-gap;
+    flex-wrap: wrap;
+
     &-param {
-			color: black;
+      color: black;
       border-radius: 3px;
       border-bottom: 3px solid white;
       text-align: center;
       background-color: vars.$grayTransparent;
       appearance: textfield;
-			transition-duration: 400ms;
+      transition-duration: 400ms;
       flex-shrink: 1;
-			max-width: 200px;
+      min-width: 80px;
+      max-width: 200px;
+      width: calc(100% / 4 - 15px);
 
-			&:hover {
-				border-bottom: 3px solid rgb(18, 212, 202);
-			}
+      &:hover {
+        border-bottom: 3px solid rgb(18, 212, 202);
+      }
 
-			&:focus {
-				border-bottom: 3px solid rgb(18, 212, 202);
-			}
+      &:focus {
+        border-bottom: 3px solid rgb(18, 212, 202);
+      }
 
-			&_isError {
-				background-color: #a51414;
-				font-weight: bold;
-				transition: background-color 0.5s ease, border 0.5s ease;
-			}
+      &_isError {
+        background-color: #a51414;
+        font-weight: bold;
+        transition: background-color 0.5s ease, border 0.5s ease;
+      }
     }
+  }
 
-
+  &__actions {
+    @include mixins.flex-center;
+    @include mixins.responsive-gap;
   }
 }
 

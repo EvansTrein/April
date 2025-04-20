@@ -23,12 +23,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useCitiesStore } from '~/store/cities';
 
 const isColumn = ref(true);
+
+const citiesStore = useCitiesStore();
 
 const setActive = (newState: boolean) => {
   if (isColumn.value !== newState) {
     isColumn.value = newState;
+		citiesStore.view = citiesStore.view === 'Column' ? 'Grid' : 'Column';
   }
 };
 </script>

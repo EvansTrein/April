@@ -1,44 +1,48 @@
 <template>
-  <header class="header">
-    <h1 class="header__logo">April Pharmacy</h1>
-    <form class="header__filters">
-      <input
-        class="header__filters-param"
-        :class="{ 'header__filters-param_isError': isError }"
-        v-model="filterParams.country"
-        type="text"
-        placeholder="country"
-      />
-      <input
-        class="header__filters-param"
-        :class="{ 'header__filters-param_isError': isError }"
-        v-model="filterParams.region"
-        type="text"
-        placeholder="region"
-      />
-      <input
-        class="header__filters-param"
-        :class="{ 'header__filters-param_isError': isError }"
-        v-model="filterParams.name"
-        type="text"
-        placeholder="city name"
-      />
-      <input
-        class="header__filters-param"
-        :class="{ 'header__filters-param_isError': isError }"
-        v-model="filterParams.population"
-        type="number"
-        placeholder="min population"
-      />
-    </form>
-    <customBut @click="funcFilters" :title="buttonSearch" />
-    <toggle />
+	<header class="header">
+		<h1 class="header__logo">April Pharmacy</h1>
+		<div class="header__content">
+      <form class="header__filters">
+        <input
+          class="header__filters-param"
+          :class="{ 'header__filters-param_isError': isError }"
+          v-model="filterParams.country"
+          type="text"
+          placeholder="country"
+        />
+        <input
+          class="header__filters-param"
+          :class="{ 'header__filters-param_isError': isError }"
+          v-model="filterParams.region"
+          type="text"
+          placeholder="region"
+        />
+        <input
+          class="header__filters-param"
+          :class="{ 'header__filters-param_isError': isError }"
+          v-model="filterParams.name"
+          type="text"
+          placeholder="city name"
+        />
+        <input
+          class="header__filters-param"
+          :class="{ 'header__filters-param_isError': isError }"
+          v-model="filterParams.population"
+          type="number"
+          placeholder="min population"
+        />
+      </form>
+			<div class="header__actions">
+				<customBut @click="funcFilters" :title="buttonSearch" />
+				<toggle />
+			</div>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import customBut from './../UI/buttons/customBut.vue';
-import toggle from './../UI/buttons/toggle.vue';
+import customBut from './../UI/customBut.vue';
+import toggle from './../UI/toggle.vue';
 import { useCitiesStore } from './../store/cities';
 import type { FilterParams } from '~/types/city';
 

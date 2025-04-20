@@ -34,6 +34,7 @@ export class ApiCities {
         }
       }
 
+			console.log(response)
       return response.data.data;
     } catch (error) {
       console.error('Failed to fetch cities:', error);

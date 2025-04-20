@@ -1,12 +1,12 @@
 @use './vars.scss';
 
-@mixin min-max() {
+@mixin min-max {
   width: 100%;
   // margin: 0 auto;
   box-sizing: border-box;
-	margin-inline: auto;
+  margin-inline: auto;
 
-	@media (width >= vars.$smTableWidth) {
+  @media (width >= vars.$smTableWidth) {
     max-width: vars.$smTableWidth;
   }
   @media (width >= vars.$tableWidth) {
@@ -20,5 +20,50 @@
   }
   @media (width >= vars.$lgDesktopWidth) {
     max-width: vars.$lgDesktopWidth;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+@mixin responsive-gap($gap-desktop: 15px, $gap-mobile: 5px) {
+  gap: $gap-desktop;
+
+  @media (width < vars.$smTableWidth) {
+    gap: $gap-mobile;
+  }
+}
+
+@mixin item-style {
+  @include flex-center;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: vars.$grayTransparent;
+  cursor: pointer;
+  transition: all 400ms ease;
+
+  &:hover {
+    background-color: vars.$gray;
+    transform: scale(1.1);
+  }
+}
+
+@mixin title-info-style {
+  @include flex-center;
+  gap: 10px;
+
+  h3,
+  h4 {
+    font-weight: bold;
+    margin: 0;
+
+    span {
+      font-weight: normal;
+      text-decoration: none;
+    }
   }
 }

@@ -18,9 +18,43 @@
   padding: 20px;
   border-radius: 8px;
 	border: 3px solid black;
-  max-width: 20rem;
+  max-width: 45rem;
   width: 100%;
   text-align: center;
   margin: 0 auto;
 	transform: translateY(10rem);
+
+	&__title {
+		font-size: 1.5rem;
+		font-weight: bold; 
+		margin-bottom: 1rem;
+		text-decoration: underline;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-align: left;
+	}
+
+	&__label {
+		font-weight: bold;
+	}
+
+	&__link {
+		display: inline-block;
+		color: rgb(49, 49, 148);
+		text-decoration: none;
+		font-weight: normal;
+		transition: all 400ms ease;
+	
+		&:hover {
+			background-color: rgb(212, 212, 212);
+			color: black;
+			border-radius: 3px;
+			padding: 0 2px;
+			transform: scale(1.2);
+		}
+	}
 }
