@@ -2,18 +2,24 @@
 @use './../mixins.scss';
 
 .header {
-  @include mixins.flex-center;
   @include mixins.responsive-gap;
-  text-align: center;
-  flex-wrap: wrap;
   border-bottom: 3px double #c7c6c6;
+  display: flex;
+  align-items: center;
+	padding: 0.5rem 1rem;
+  width: 100%;
+
+	@media (width <= vars.$tableWidth) {
+    flex-direction: column;
+  }
 
   &__logo {
-    font-size: 2rem;
+		width: fit-content;
+		text-align: center;
+    font-size: 1.8rem;
     font-weight: bold;
     letter-spacing: 5px;
     word-spacing: 7px;
-    width: fit-content;
     background: linear-gradient(90deg, #ff0000, #ffffff 40%, #6a0dad, #ff0000);
     background-color: cover;
     background-clip: text;
@@ -21,21 +27,16 @@
     color: transparent;
     animation: animTitle 10s linear infinite;
   }
-
-  &__content {
-    @include mixins.flex-center;
-    @include mixins.responsive-gap;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
+	
   &__filters {
-    @include mixins.flex-center;
+		display: flex;
     @include mixins.responsive-gap;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
+    flex-grow: 1;
 
     &-param {
+			flex: 1;
+      min-width: 5rem;
       color: black;
       border-radius: 3px;
       border-bottom: 3px solid white;
@@ -43,15 +44,8 @@
       background-color: vars.$grayTransparent;
       appearance: textfield;
       transition-duration: 400ms;
-      flex-shrink: 1;
-      min-width: 80px;
-      max-width: 200px;
-      width: calc(100% / 4 - 15px);
 
-      &:hover {
-        border-bottom: 3px solid rgb(18, 212, 202);
-      }
-
+      &:hover,
       &:focus {
         border-bottom: 3px solid rgb(18, 212, 202);
       }
@@ -65,6 +59,7 @@
   }
 
   &__actions {
+    width: fit-content;
     @include mixins.flex-center;
     @include mixins.responsive-gap;
   }

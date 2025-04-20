@@ -23,6 +23,11 @@
   }
 }
 
+@mixin debug {
+	outline: 4px dashed rgb(190, 12, 12);
+	background-color: rgb(95, 85, 52);
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;

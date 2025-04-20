@@ -1,7 +1,6 @@
 <template>
 	<header class="header">
 		<h1 class="header__logo">April Pharmacy</h1>
-		<div class="header__content">
       <form class="header__filters">
         <input
           class="header__filters-param"
@@ -32,11 +31,10 @@
           placeholder="min population"
         />
       </form>
-			<div class="header__actions">
-				<customBut @click="funcFilters" :title="buttonSearch" />
-				<toggle />
-			</div>
-    </div>
+		<div class="header__actions">
+			<customBut @click="funcFilters" :title="buttonSearch" />
+			<toggle />
+		</div>
   </header>
 </template>
 
