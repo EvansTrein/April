@@ -7,8 +7,9 @@ import type { FilterParams } from '~/types/city';
 
 export const useCitiesStore = defineStore('cities', () => {
   const apiService = new ApiCities();
-  const isLoading = ref<boolean>(false);
+  const isLoading = ref(false);
 	const noResults = ref(false);
+	const isActiveFilter = ref(false);
 	const view = ref<'Column' | 'Grid'>('Column');
 
   const cities = reactive<City[]>([]);
@@ -39,6 +40,9 @@ export const useCitiesStore = defineStore('cities', () => {
 	};
 
 	const fitered = async (params: FilterParams) => {
+		isActiveFilter.value = !isActiveFilter.value;
+
+		if (isActiveFilter) {
     try {
       if (!params.country && !params.region && !params.name && !params.population) {
 				noResults.value = false
@@ -74,7 +78,8 @@ export const useCitiesStore = defineStore('cities', () => {
       console.error('Error filtering cities:', error);
       alert('Fail filtering cities');
     }
-  };
+  }
+}
 
-  return { filteredCities, fetchCities, isLoading, fitered, noResults, view };
+  return { filteredCities, fetchCities, isLoading, fitered, noResults, view, isActiveFilter };
 });

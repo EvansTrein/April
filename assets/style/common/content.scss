@@ -1,4 +1,5 @@
 @use './../vars.scss';
+@use './../mixins.scss';
 
 .contentCol {
   margin-top: 1rem;
@@ -6,22 +7,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  @include mixins.responsive-gap;
 
   &__item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
     padding: 1rem;
     width: 90%;
     max-width: 40rem;
     min-width: 20rem;
     height: auto;
-    background-color: vars.$grayTransparent;
-    cursor: pointer;
-    transition: all 400ms ease;
+    @include mixins.item-style;
 
     &:hover {
       background-color: vars.$gray;
@@ -29,42 +23,15 @@
     }
 
     &-title {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
       margin-bottom: 1.1rem;
-
-      h3 {
-        font-weight: bold;
-        margin: 0;
-
-        span {
-          font-weight: normal;
-          text-decoration: none;
-        }
-      }
+      @include mixins.title-info-style;
     }
 
     &-info {
-      display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
       gap: 8px;
-      text-align: center;
-
-      h4 {
-        font-weight: bold;
-        margin: 0;
-
-        span {
-          font-weight: normal;
-          text-decoration: none;
-        }
-      }
+      @include mixins.title-info-style;
     }
   }
 }
@@ -73,65 +40,24 @@
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  @include mixins.responsive-gap;
 
   &__item {
     font-size: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    background-color: vars.$grayTransparent;
-    cursor: pointer;
-    transition: all 400ms ease;
     height: 100%;
-    min-height: 12rem;
-
-    &:hover {
-      background-color: vars.$gray;
-      transform: scale(1.1);
-    }
+    min-height: 11rem;
+    @include mixins.item-style;
 
     &-title {
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
       margin-bottom: 1rem;
-
-      h3 {
-        text-align: center;
-        font-weight: bold;
-        text-align: center;
-        margin: 0;
-
-        span {
-          font-weight: normal;
-          text-decoration: none;
-        }
-      }
+      @include mixins.title-info-style;
     }
 
     &-info {
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      // flex-wrap: wrap;
       gap: 8px;
-
-      h4 {
-        font-weight: bold;
-        text-align: center;
-        margin: 0;
-
-        span {
-          font-weight: normal;
-          text-decoration: none;
-        }
-      }
+      @include mixins.title-info-style;
     }
   }
 }
@@ -146,12 +72,32 @@
 }
 
 .load {
-	position: fixed; 
-	z-index: 25;
-	top: 50%;
+  position: fixed;
+  z-index: 25;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -100%);
   z-index: 1000;
+}
+
+.scroll-to-top {
+	position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: vars.$grayTransparent;
+  color: rgb(0, 0, 0);
+  border-radius: 1rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: 400ms;
+	@include mixins.flex-center;
+
+  &:hover {
+    background-color: rgb(114, 114, 114);
+		transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {

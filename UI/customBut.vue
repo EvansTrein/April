@@ -1,5 +1,5 @@
 <template>
-  <button class="button">{{ title }}</button>
+  <button :class="['button', { 'button--clear': title === 'Clear' }]">{{ title }}</button>
 </template>
 
 <script setup lang="ts">
@@ -34,6 +34,18 @@ const { title } = defineProps<{ title: string }>();
     box-shadow: rgb(93, 24, 220) 0px 0px 0px 0px;
     transform: translateY(5px);
     transition: 100ms;
+  }
+}
+
+.button--clear {
+  background-color: rgb(15, 160, 153);
+
+  &:hover {
+    background-color: rgb(11, 185, 177);
+  }
+
+  &:active {
+    background-color: rgb(11, 185, 177);
   }
 }
 </style>

@@ -57,7 +57,10 @@ const filterParams = reactive<FilterParams>({
 
 const funcFilters = async () => {
   const hasFilters =
-    filterParams.country || filterParams.region || filterParams.name || filterParams.population !== null;
+  filterParams.country ||
+  filterParams.region ||
+  filterParams.name ||
+  (filterParams.population !== null && Number.isFinite(filterParams.population));
 
   if (!hasFilters) {
     isError.value = true;

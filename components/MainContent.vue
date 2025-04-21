@@ -1,10 +1,15 @@
 <template>
   <main class="container">
-		<div v-if="showLoader" class="load">
-			<loader style="margin: 0 auto" />
-		</div>
-		<div :class="citiesStore.view === 'Column' ? 'contentCol' : 'contentGrid'">
-      <div :class="citiesStore.view === 'Column' ? 'contentCol__item' : 'contentGrid__item'" v-for="city in citiesStore.filteredCities" :key="city.id" @click="openModal(city)">
+    <div v-if="showLoader" class="load">
+      <loader style="margin: 0 auto" />
+    </div>
+    <div :class="citiesStore.view === 'Column' ? 'contentCol' : 'contentGrid'">
+      <div
+        :class="citiesStore.view === 'Column' ? 'contentCol__item' : 'contentGrid__item'"
+        v-for="city in citiesStore.filteredCities"
+        :key="city.id"
+        @click="openModal(city)"
+      >
         <div :class="citiesStore.view === 'Column' ? 'contentCol__item-title' : 'contentGrid__item-title'">
           <h3>
             Country: <span> {{ city.country }}</span>
@@ -14,19 +19,19 @@
           </h3>
         </div>
         <div :class="citiesStore.view === 'Column' ? 'contentCol__item-info' : 'contentGrid__item-info'">
-					<h4>
+          <h4>
             Name: <span> {{ city.name }}</span>
           </h4>
-					<h4>
+          <h4>
             Population: <span> {{ city.population }}</span>
           </h4>
-					<h4>
+          <h4>
             WikiDataId: <span> {{ city.wikiDataId }}</span>
           </h4>
         </div>
       </div>
-			<!-- scroll threshold -->
-			<div ref="sentinel" style="height: 1px;"></div>
+      <!-- scroll threshold -->
+      <div ref="sentinel" style="height: 1px"></div>
     </div>
     <div v-if="isModalOpen" class="modal-container" @click="closeModal">
       <div class="modal" @click.stop>
@@ -34,6 +39,7 @@
       </div>
     </div>
     <h1 v-if="citiesStore.noResults" class="noResults">no results</h1>
+    <button v-if="showScrollToTop" class="scroll-to-top" @click="scrollToTop">↑</button>
   </main>
 </template>
 
@@ -44,6 +50,7 @@ import { type City } from '~/types/city';
 
 const citiesStore = useCitiesStore();
 const isModalOpen = ref(false);
+const showScrollToTop = ref(false);
 const selectedCity = ref<City | null>(null);
 
 // for dynamic data loading
@@ -63,28 +70,42 @@ const closeModal = () => {
 };
 
 const showLoader = computed(() => {
-  return citiesStore.isLoading
+  return citiesStore.isLoading;
 });
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+
+const handleScroll = () => {
+  showScrollToTop.value = window.scrollY > 200;
+};
+
 onMounted(() => {
-	console.log("fetchCities INIT")
+  console.log('fetchCities INIT');
+  window.addEventListener('scroll', handleScroll);
   // citiesStore.fetchCities();
-	observer.value = new IntersectionObserver(
+  observer.value = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting && 
-          !citiesStore.isLoading && 
-          Date.now() - lastFetchTime.value > FETCH_COOLDOWN) {
-        
+      if (
+        entries[0].isIntersecting &&
+        !citiesStore.isLoading &&
+        Date.now() - lastFetchTime.value > FETCH_COOLDOWN &&
+        !citiesStore.isActiveFilter
+      ) {
         console.log('download the following data');
         lastFetchTime.value = Date.now();
-        // citiesStore.fetchCities();
+        citiesStore.fetchCities();
       }
     },
     {
       root: null,
       rootMargin: '100px',
-      threshold: 0.1
-    }
+      threshold: 0.1,
+    },
   );
 
   if (sentinel.value) {
@@ -92,13 +113,10 @@ onMounted(() => {
   }
 });
 
-onBeforeUnmount (() => {
-	if (observer.value) {
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+  if (observer.value) {
     observer.value.disconnect();
   }
 });
-
-
-
-
 </script>

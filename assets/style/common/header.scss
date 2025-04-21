@@ -2,12 +2,12 @@
 @use './../mixins.scss';
 
 .header {
-  @include mixins.responsive-gap;
-  border-bottom: 3px double #c7c6c6;
+	border-bottom: 3px double #c7c6c6;
   display: flex;
   align-items: center;
 	padding: 0.5rem 1rem;
   width: 100%;
+  @include mixins.responsive-gap;
 
 	@media (width <= vars.$tableWidth) {
     flex-direction: column;
@@ -30,9 +30,9 @@
 	
   &__filters {
 		display: flex;
-    @include mixins.responsive-gap;
     flex-wrap: wrap; 
     flex-grow: 1;
+    @include mixins.responsive-gap;
 
     &-param {
 			flex: 1;
