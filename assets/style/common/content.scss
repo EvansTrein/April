@@ -48,14 +48,18 @@
     min-height: 11rem;
     @include mixins.item-style;
 
+		@media (width <= vars.$tableWidth) {
+			font-size: 0.8rem;
+		}
+
     &-title {
       flex-direction: column;
       margin-bottom: 1rem;
       @include mixins.title-info-style;
     }
-
+		
     &-info {
-      flex-direction: column;
+			flex-direction: column;
       gap: 8px;
       @include mixins.title-info-style;
     }
